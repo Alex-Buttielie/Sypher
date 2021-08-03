@@ -1,10 +1,10 @@
 package com.example.algamoney.api.service;
 
-import com.example.algamoney.api.model.Categoria;
+import com.example.algamoney.api.model.Pessoa;
 
 import java.util.Optional;
 
-public interface CategoriaService {
+public interface PessoaService {
 
-    Optional<Categoria> getCategoriaById(Long codigo);
+    Optional<Pessoa> getPessoaById(Long codigo);
 }

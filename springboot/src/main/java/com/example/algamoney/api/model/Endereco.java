@@ -1,59 +1,72 @@
 package com.example.algamoney.api.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import java.util.Objects;
 
-@Entity
-@Table(name = "categoria")
-public class Pessoa {
+import javax.persistence.Embeddable;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo;
+@Embeddable
+public class Endereco {
 
-    @NotNull
-    private String nome;
+ private String logradouro;
+ private String numero;
+ private String complemento;
+ private String bairro;
+ private String cep;
+ private String cidade;
+ private String estado;
 
-    public Long getCodigo() {
-        return codigo;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNumero() {
+        return numero;
     }
 
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pessoa categoria = (Pessoa) o;
-        return Objects.equals(codigo, categoria.codigo);
+    public String getComplemento() {
+        return complemento;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(codigo);
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public static Pessoa converter(Pessoa c) {
-        Pessoa categoria = new Pessoa();
-        categoria.setCodigo(c.getCodigo());
-        categoria.setNome(c.getNome());
+    public String getBairro() {
+        return bairro;
+    }
 
-        return categoria;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

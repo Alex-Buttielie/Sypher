@@ -1,5 +1,6 @@
 package com.example.algamoney.api.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "categoria")
-public class Categoria {
+@Table(name = "pessoa")
+public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,13 @@ public class Categoria {
 
     @NotNull
     private String nome;
+
+    @NotNull
+    private boolean ativo;
+
+    @Embedded
+    private Endereco endereco;
+
 
     public Long getCodigo() {
         return codigo;
@@ -36,11 +44,28 @@ public class Categoria {
         this.nome = nome;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categoria categoria = (Categoria) o;
+        Pessoa categoria = (Pessoa) o;
         return Objects.equals(codigo, categoria.codigo);
     }
 
@@ -49,11 +74,13 @@ public class Categoria {
         return Objects.hash(codigo);
     }
 
-    public static Categoria converter(Categoria c) {
-        Categoria categoria = new Categoria();
-        categoria.setCodigo(c.getCodigo());
-        categoria.setNome(c.getNome());
+    public static Pessoa converter(Pessoa p) {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setCodigo(p.getCodigo());
+        pessoa.setNome(p.getNome());
+        pessoa.setAtivo(p.isAtivo());
+        pessoa.setEndereco(p.getEndereco());
 
-        return categoria;
+        return pessoa;
     }
 }
